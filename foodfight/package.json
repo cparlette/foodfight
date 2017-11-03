@@ -15,7 +15,7 @@
     "eject": "react-scripts eject"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "index.js",
+  "main": "handler.js",
   "devDependencies": {
     "aws-sdk": "^2.94.0",
     "babel-core": "^6.26.0",
