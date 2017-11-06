@@ -7,7 +7,8 @@ import {
 } from "react-bootstrap";
 import {
   AuthenticationDetails,
-  CognitoUserPool
+  CognitoUserPool,
+  CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
@@ -89,8 +90,14 @@ export default class Signup extends Component {
       ClientId: config.cognito.APP_CLIENT_ID
     });
 
+    const attributeList = [];
+    attributeList.push(new CognitoUserAttribute({
+      Name: 'email',
+      Value: email
+    }));
+
     return new Promise((resolve, reject) =>
-      userPool.signUp(email, password, [], null, (err, result) => {
+      userPool.signUp(email, password, attributeList, null, (err, result) => {
         if (err) {
           reject(err);
           return;
