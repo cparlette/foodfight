@@ -1,5 +1,8 @@
 export default {
   MAX_ATTACHMENT_SIZE: 5000000,
+  s3: {
+    BUCKET: "notes-app-api-prod-serverlessdeploymentbucket-84l437ujrdcq"
+  },
   apiGateway: {
     URL: "https://vopwrk2tik.execute-api.us-east-1.amazonaws.com/prod/",
     REGION: "us-east-1"
