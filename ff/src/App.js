@@ -8,10 +8,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Tic Tac Toe</h1>
+          <h1 className="App-title">Food Fight!</h1>
         </header>
         <p className="App-intro">
-          <Board />
+          <Game />
         </p>
       </div>
     );
@@ -34,25 +34,15 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Current DynamoDB Value: X';
 
     return (
       <div>
         <div className="status">{status}</div>
+        <p />
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderSquare('Increse Value in DynamoDB')}
+          {this.renderSquare('Decrease Value in DynamoDB')}
         </div>
       </div>
     );
@@ -65,10 +55,6 @@ class Game extends React.Component {
       <div className="game">
         <div className="game-board">
           <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
         </div>
       </div>
     );
