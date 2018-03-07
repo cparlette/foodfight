@@ -11,7 +11,7 @@ class App extends Component {
           <h1 className="App-title">Food Fight!</h1>
         </header>
         <p className="App-intro">
-          <Game />
+          <Board />
         </p>
       </div>
     );
@@ -19,9 +19,13 @@ class App extends Component {
 }
 
 class Square extends React.Component {
+  handleClick() {
+    console.log('this is: ', this);
+  }
+
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={(e) => this.handleClick(e)}>
         {this.props.value}
       </button>
     );
@@ -40,7 +44,7 @@ class Board extends React.Component {
       <div>
         <div className="status">{status}</div>
         <p />
-        <div className="board-row">
+        <div className="buttons">
           {this.renderSquare('Increse Value in DynamoDB')}
           {this.renderSquare('Decrease Value in DynamoDB')}
         </div>
@@ -49,16 +53,5 @@ class Board extends React.Component {
   }
 }
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-      </div>
-    );
-  }
-}
 
 export default App;
