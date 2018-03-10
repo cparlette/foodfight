@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,7 +21,16 @@ class App extends Component {
 
 class Square extends React.Component {
   handleClick() {
-    console.log('this is: ', this);
+    axios.put('https://5ughd7di2g.execute-api.us-east-1.amazonaws.com/dev/putNewItemInDynamo', {
+      initialtest: 'Plum',
+      whatever: 'something'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render() {
