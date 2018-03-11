@@ -20,13 +20,18 @@ class App extends Component {
 }
 
 class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: []
+    }
+  }
+
   handleClick() {
-    axios.put('https://5ughd7di2g.execute-api.us-east-1.amazonaws.com/dev/putNewItemInDynamo', {
-      initialtest: 'Plum',
-      whatever: 'something'
-    })
-    .then(function (response) {
+    axios.get('https://wfgr4e6vzl.execute-api.us-east-1.amazonaws.com/dev/getAllDynamoEntries')
+    .then((response) => {
       console.log(response);
+      this.setState({searchResults: response.data.Items});
     })
     .catch(function (error) {
       console.log(error);
@@ -35,9 +40,12 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={(e) => this.handleClick(e)}>
-        {this.props.value}
-      </button>
+      <div>
+        <button className="square" onClick={(e) => this.handleClick(e)}>
+          Get Current Users from DynamoDB
+        </button>
+        <Results searchResults={this.state.searchResults} />
+      </div>
     );
   }
 }
@@ -65,7 +73,7 @@ class UserForm extends Component {
     // get our form data out of state
     const { fname, lname, email } = this.state;
 
-    axios.put('https://5ughd7di2g.execute-api.us-east-1.amazonaws.com/dev/putNewItemInDynamo', {
+    axios.put('https://wfgr4e6vzl.execute-api.us-east-1.amazonaws.com/dev/putNewItemInDynamo', {
       fname: fname,
       lname: lname,
       email: email
@@ -97,13 +105,52 @@ class UserForm extends Component {
   }
 }
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square value={i} />;
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: this.props.searchResults
+    }
   }
 
   render() {
-    const status = 'Current DynamoDB Value: X';
+      var resultItems = this.props.searchResults.map(function(result) {
+          return <ResultItem email={result.email} fname={result.fname} lname={result.lname} />
+      });
+      return(
+          <table>
+              <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+              </tr>
+              {resultItems}
+          </table>           
+      );
+  }
+}
+
+class ResultItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fname: this.props.fname
+    }
+  }
+    render() {
+        return(
+          <tr>
+            <td>{this.props.email}</td>
+            <td>{this.props.fname}</td>
+            <td>{this.props.lname}</td>
+          </tr>
+        )
+    }
+}
+
+class Board extends React.Component {
+  render() {
+    const status = 'Welcome to Food Fight!';
 
     return (
       <div>
@@ -112,8 +159,7 @@ class Board extends React.Component {
         <UserForm />
         <p />
         <div className="buttons">
-          {this.renderSquare('Increse Value in DynamoDB')}
-          {this.renderSquare('Decrease Value in DynamoDB')}
+          <Square />
         </div>
       </div>
     );
