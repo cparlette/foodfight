@@ -11,9 +11,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Food Fight!</h1>
         </header>
-        <p className="App-intro">
+        <div className="App-intro">
           <Board />
-        </p>
+        </div>
       </div>
     );
   }
@@ -119,12 +119,16 @@ class Results extends React.Component {
       });
       return(
           <table>
-              <tr>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-              </tr>
-              {resultItems}
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resultItems}
+              </tbody>
           </table>           
       );
   }
@@ -154,13 +158,13 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className="status">{status}</div>
+        <span className="status">{status}</span>
         <p />
         <UserForm />
         <p />
-        <div className="buttons">
+        <span className="buttons">
           <Square />
-        </div>
+        </span>
       </div>
     );
   }
