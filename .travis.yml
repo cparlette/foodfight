@@ -5,6 +5,5 @@ cache:
   directories:
   - ff/node_modules
 script:
-  - cd ff
-  - yarn test
-  - yarn run build
+  - cd ff && yarn test
+  - cd ff && yarn run build
