@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 cache:
   directories:
   - ff/node_modules
 script:
-  - cd ff && yarn test
-  - cd ff && yarn run build
+- cd ff && yarn test
+- cd ff && yarn run build
+notifications:
+  slack:
+    secure: FXn/Sk87i8Ly7Ic597OkqteM8BWlbjXRGPKb2wHa80ig+5bcsZ0lXiuUX4WgbuxCeRsc/u6xSvfjEPdbIutTeah4erFv2YkdT2GMZ6XtTrOpf1LATx71BZjTCyz3yhMYkZVi2xdrdatSPK3lazFIC3JW5z+hZCrf2FVLBkHkyQmKgKFW9sOhMpcVX84vnXTsOIU3rB64wOB3h8DD4UgZ29JbLqRB/RKNvVakEbClW9gbjBtSVobZ4grX4IVuQGnAwZuYmiFv6qpSvyjGGiuNqCMKJ8r7lAIIGfHkPTm9jUJgSfA7UmY8zn+K0kRpjjCtwEpvTWDmcWh4NVJ04Ph6Ab6xlGl7gGkcGKWJngvEJIN/g4nYUwNjSosQpmiBO1ZmSxxB0UfmZRxvouAwxuFdXcw8tg47UADwNqW7/g0GrzwNCwKEhMhzOqdIqEdS3/GpZp8HpXDZghkOEULZBM7diV2bQIqZCYnXOrOsHKK5OJQgqlOdQuG7E80k+GSx0jALmf2P+Ytt2Te40A8sJ8RPIoevChR7tLQv9baLV7Q6Q+nJkmYE6F7MHFR3DN3T6uy9DzRLeoPbvLIH66H/O5ATmHKq+SAWIeG+J0XnGhRa69LOO46jgTv273Potz6BGvTp1iZkqWH/JfUqGTJ7Bx4tCOl9egCWEk5NYoDjV4D1qqE=
