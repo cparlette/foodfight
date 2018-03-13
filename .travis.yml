@@ -6,7 +6,7 @@ cache:
   directories:
   - ff/node_modules
 install:
-  - pip install awscli
+  - sudo pip install awscli
 script:
 - cd ff && yarn install && yarn test
 - yarn run build
