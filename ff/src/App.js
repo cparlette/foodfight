@@ -4,6 +4,10 @@ import logo from './FoodFightLogo.png';
 import './App.css';
 
 class App extends Component {
+  componentDidMount(){
+    document.title = "Food Fight!"
+  }
+  
   render() {
     return (
       <div className="App">
