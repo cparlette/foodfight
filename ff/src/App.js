@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import logo from './FoodFightLogo.png';
 import './App.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { Navbar } from 'react-bootstrap';
+import { Link, withRouter } from 'react-router-dom';
+import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import Routes from "./Routes";
 
 class App extends Component {
@@ -13,159 +12,27 @@ class App extends Component {
   
   render() {
     return (
-      <Router>
-        <div className="App">
+        <div className="App container">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="Food Fight!" />
           </header>
           <Navbar fluid collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to="/">Status</Link>
-                <Link to="/put">Sign Up</Link>
-                <Link to="/get">Current Users</Link>
+                <Link to="/"> Food Fight! </Link>
               </Navbar.Brand>
-              <Navbar.Toggle />
             </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav pullRight>
+                <NavItem href="/put"> Sign Up </NavItem>
+                <NavItem href="/get"> Current Users </NavItem>
+              </Nav>
+            </Navbar.Collapse>
           </Navbar>
           <Routes />
         </div>
-      </Router>
     );
   }
-}
-
-export class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchResults: []
-    }
-  }
-
-  handleClick() {
-    axios.get('https://wfgr4e6vzl.execute-api.us-east-1.amazonaws.com/dev/getAllDynamoEntries')
-    .then((response) => {
-      console.log(response);
-      this.setState({searchResults: response.data.Items});
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <button className="square" onClick={(e) => this.handleClick(e)}>
-          Get Current Users from DynamoDB
-        </button>
-        <Results searchResults={this.state.searchResults} />
-      </div>
-    );
-  }
-}
-
-export class UserForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      fname: '',
-      lname: '',
-      email: '',
-    };
-  }
-
-  onChange = (e) => {
-    // Because we named the inputs to match their corresponding values in state, it's
-    // super easy to update the state
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    // get our form data out of state
-    const { fname, lname, email } = this.state;
-
-    axios.put('https://wfgr4e6vzl.execute-api.us-east-1.amazonaws.com/dev/putNewItemInDynamo', {
-      fname: fname,
-      lname: lname,
-      email: email
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  }
-
-  render() {
-    const { fname, lname, email } = this.state;
-    return (
-      <form onSubmit={this.onSubmit}>
-        <label> First Name:
-          <input type="text" name="fname" value={fname} onChange={this.onChange} />
-        </label><br />
-        <label> Last Name:
-          <input type="text" name="lname" value={lname} onChange={this.onChange} />
-        </label><br />
-        <label> Email Address:
-          <input type="text" name="email" value={email} onChange={this.onChange} />
-        </label><br />
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
-}
-
-class Results extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchResults: this.props.searchResults
-    }
-  }
-
-  render() {
-      var resultItems = this.props.searchResults.map(function(result) {
-          return <ResultItem email={result.email} fname={result.fname} lname={result.lname} />
-      });
-      return(
-          <table>
-              <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {resultItems}
-              </tbody>
-          </table>           
-      );
-  }
-}
-
-class ResultItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fname: this.props.fname
-    }
-  }
-    render() {
-        return(
-          <tr>
-            <td>{this.props.email}</td>
-            <td>{this.props.fname}</td>
-            <td>{this.props.lname}</td>
-          </tr>
-        )
-    }
 }
 
 export class Status extends React.Component {
@@ -181,4 +48,4 @@ export class Status extends React.Component {
 }
 
 
-export default App;
+export default withRouter(App);
