@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import logo from './FoodFightLogo.png';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 
 class App extends Component {
@@ -12,22 +12,24 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="Food Fight!" />
-        </header>
-        <Navbar fluid collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/">Food Fight</Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-        </Navbar>
-        <div className="App-intro">
-          <Board />
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="Food Fight!" />
+          </header>
+          <Navbar fluid collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <Link to="/">Food Fight</Link>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+          </Navbar>
+          <div className="App-intro">
+            <Board />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
