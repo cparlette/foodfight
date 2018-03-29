@@ -12,16 +12,17 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 80px;
   padding: 20px;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.navbar,
+.navbar-default{
+  background-image: none;
 }
 
-.App-intro {
-  font-size: large;
+.navbar-header {
+  background-color: #F16E10;
 }
 
