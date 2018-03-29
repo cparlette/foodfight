@@ -4,6 +4,7 @@ import logo from './FoodFightLogo.png';
 import './App.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
+import Routes from "./Routes";
 
 class App extends Component {
   componentDidMount(){
@@ -20,21 +21,21 @@ class App extends Component {
           <Navbar fluid collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to="/">Food Fight</Link>
+                <Link to="/">Status</Link>
+                <Link to="/put">Sign Up</Link>
+                <Link to="/get">Current Users</Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
           </Navbar>
-          <div className="App-intro">
-            <Board />
-          </div>
+          <Routes />
         </div>
       </Router>
     );
   }
 }
 
-class Square extends React.Component {
+export class Square extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,7 +66,7 @@ class Square extends React.Component {
   }
 }
 
-class UserForm extends Component {
+export class UserForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -167,19 +168,13 @@ class ResultItem extends React.Component {
     }
 }
 
-class Board extends React.Component {
+export class Status extends React.Component {
   render() {
     const status = 'Welcome to Food Fight!';
 
     return (
       <div>
         <span className="status">{status}</span>
-        <p />
-        <UserForm />
-        <p />
-        <span className="buttons">
-          <Square />
-        </span>
       </div>
     );
   }
