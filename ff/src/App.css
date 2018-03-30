@@ -12,20 +12,11 @@
 
 .App-header {
   background-color: #222;
-  height: 80px;
+  height: 120px;
   padding: 20px;
   color: white;
 }
 
-.navbar,
-.navbar-default{
-  background-image: none;
-}
-
-.navbar-header {
-  background-color: #F16E10;
-}
-
-.nav-collapse .li {
-	list-style-type: none;
+.navbar {
+	marginBottom: "0";
 }

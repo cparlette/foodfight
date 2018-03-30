@@ -4,7 +4,6 @@ import './App.css';
 import { Link, withRouter } from 'react-router-dom';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import Routes from "./Routes";
-import { LinkContainer } from 'react-router-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class App extends Component {
       isAuthenticating: true
     };
   }
-  
+
   componentDidMount(){
     document.title = "Food Fight!"
   }
@@ -37,16 +36,10 @@ class App extends Component {
               <Link to="/"> Food Fight! </Link>
             </Navbar.Brand>
           </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
-              <LinkContainer to='/put'>
-                <NavItem eventKey={1}> Sign Up </NavItem>
-              </LinkContainer>
-              <LinkContainer to='/get'>
-                <NavItem eventKey={2}> Current Users </NavItem>
-              </LinkContainer>
+            <Nav>
+              <NavItem eventKey={1} href='/put'> Sign Up </NavItem>
+              <NavItem eventKey={2} href='/get'> Current Users </NavItem>
             </Nav>
-          </Navbar.Collapse>
         </Navbar>
         <Routes childProps={childProps} />
       </div>
