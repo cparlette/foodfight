@@ -26,3 +26,6 @@
   background-color: #F16E10;
 }
 
+.nav-collapse .li {
+	list-style-type: none;
+}
