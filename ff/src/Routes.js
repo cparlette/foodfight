@@ -4,9 +4,9 @@ import { Status } from "./App";
 import ListUsers from "./ListUsers";
 import UserForm from "./UserForm";
 
-export default () =>
+export default ({ childProps }) =>
   <Switch>
-    <Route path="/" exact component={Status} />
-    <Route path="/put" exact component={UserForm} />
-    <Route path="/get" exact component={ListUsers} />
+    <Route path="/" exact component={Status} props={childProps} />
+    <Route path="/put" exact component={UserForm} props={childProps} />
+    <Route path="/get" exact component={ListUsers} props={childProps} />
   </Switch>;
