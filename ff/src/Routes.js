@@ -4,11 +4,12 @@ import { Status } from "./App";
 import ListUsers from "./ListUsers";
 import UserForm from "./UserForm";
 import Login from "./Login";
+import AppliedRoute from "./AppliedRoute";
 
 export default ({ childProps }) =>
   <Switch>
-    <Route path="/" exact component={Status} props={childProps} />
-    <Route path="/put" exact component={UserForm} props={childProps} />
-    <Route path="/get" exact component={ListUsers} props={childProps} />
-    <Route path="/login" exact component={Login} props={childProps} />
+    <AppliedRoute path="/" exact component={Status} props={childProps} />
+    <AppliedRoute path="/put" exact component={UserForm} props={childProps} />
+    <AppliedRoute path="/get" exact component={ListUsers} props={childProps} />
+    <AppliedRoute path="/login" exact component={Login} props={childProps} />
   </Switch>;
